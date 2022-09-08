@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<router-view></router-view>
-		<h1>123456</h1>
+		<van-button type="primary">默认按钮</van-button>
+		<div class="test">123456</div>
 	</div>
 
 </template>
