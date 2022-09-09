@@ -5,3 +5,9 @@ export const login = data => request({
 	url:'v1_0/authorizations',
 	data
 })
+
+
+export const sendCode = mobile => request({
+	method:'GET',
+	url:`v1_0/sms/codes/${mobile}`
+})
