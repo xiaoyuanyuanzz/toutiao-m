@@ -1,12 +1,13 @@
 <template>
 	<div class="login_container">
+		
 		<!-- 导航栏 -->
 		<van-nav-bar title="登录" class="page_nav_bar" style="background-color: #3296fa;" />
 		<!-- 登录表单 -->
-		<van-form @submit="onSubmit">
+ 		<van-form @submit="onSubmit">
 		  <van-cell-group inset style="margin: 0;">
 		    <van-field
-			v-model="user.mobile"
+			  v-model="user.mobile"
 		      name="手机号"
 		      placeholder="请输入手机号"
 		    >
@@ -16,7 +17,7 @@
 				
 		    </van-field>
 		    <van-field
-			v-model="user.code"
+			  v-model="user.code"
 		      name="验证码"
 		      placeholder="请输入验证码"
 		    >
@@ -34,38 +35,40 @@
 		      提交
 		    </van-button>
 		  </div>
-		</van-form>
+		</van-form> 
 		
 		<!-- TODO -->
+
+		
+		
+		
 	</div>
 </template>
 
 <script>
-import { ref } from 'vue'
+
 import { login } from '@/api/user'
 
+import { ref , reactive} from 'vue'
 export default {
   setup() {
-    const username = ref('');
-    const password = ref('');
+	  const user = reactive({
+		  mobile:'',
+		  code:''
+	  })
     const onSubmit = async () => {
-		const user = this.user
 		const res = await login(user)
 		console.log('登录成功',res)
     };
-	const user = {
-		code:'',
-		mobile:''
-	}
 
     return {
-      username,
-      password,
+		user,
       onSubmit,
-	  user
     };
   },
 };
+
+
 </script>
 
 <style scoped lang="less">
