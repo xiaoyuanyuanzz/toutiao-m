@@ -4,6 +4,8 @@ import '@/styles/index.less'
 import '@/styles/reset.css'
 import router from '@/router/index'
 import Vant from 'vant'
+import vuex from '@/store'
+import { ConfigProvider } from 'vant'
 
 /*// 1. 引入你需要的组件
 import { Button } from 'vant';*/
@@ -14,6 +16,8 @@ import 'vant/lib/index.css';
 import 'lib-flexible'
 
 const app = createApp(App)
+app.use(vuex)
 app.use(router)
 app.use(Vant)
+app.use(ConfigProvider)
 app.mount('#app')

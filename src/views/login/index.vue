@@ -2,7 +2,11 @@
 	<div class="login_container">
 		
 		<!-- 导航栏 -->
-		<van-nav-bar title="登录" class="page_nav_bar" style="background-color: #3296fa;" />
+		<van-nav-bar title="登录" class="page_nav_bar" style="background-color: #3296fa;" 
+		   left-text="返回"
+		   left-arrow
+		   @click-left="onClickLeft"
+		 />
 		<!-- 登录表单 -->
  		<van-form @submit="onSubmit" ref="loginForm">
 		  <van-cell-group inset style="margin: 0;">
@@ -54,6 +58,8 @@
 
 <script>
 
+import $ from 'jquery'
+
 import { login , sendCode} from '@/api/user'
 
 import { ref , reactive} from 'vue'
@@ -95,6 +101,10 @@ export default {
 			  }]
 	  })
 	  
+	  const onClickLeft = () => {
+		  history.back();
+	  }
+	  
     const onSubmit = async () => {
 		Toast.loading({
 		  message: '登录中',
@@ -102,9 +112,11 @@ export default {
 		  duration:0
 		});
 		try{
-			const res = await login(user)
-			console.log('登录成功',res)
+			const {data} = await login(proxy.user)
+			proxy.$store.commit('setUser',data.data)
+			console.log('登录成功',data)
 			Toast.success('登录成功')
+			proxy.$router.back()
 		}catch(err){
 			if(err.response.status === 400){
 				Toast.fail('手机号或验证码错误')
@@ -132,9 +144,11 @@ export default {
 		})
 		try{
 			const res = await sendCode(proxy.user.mobile)
+			document.querySelector('#van-field-2-input').value = ''
 			proxy.$toast('发送成功')
+			
 		}catch(err){
-			proxy.$toast('发送失败')
+			//proxy.$toast('发送失败')
 		}
 		
 	}
@@ -148,7 +162,8 @@ export default {
 	  time,
 	  isCountDownShow,
 	  ctx,
-	  proxy
+	  proxy,
+	  onClickLeft
     };
   },
 };
@@ -174,4 +189,5 @@ export default {
 		}
 	}
 }
+
 </style>
