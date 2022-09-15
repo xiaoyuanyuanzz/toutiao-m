@@ -22,3 +22,14 @@ export const getUserInfo = () => request({
 		Authorization:`Bearer ${store.state.user.token}`
 	}
 })
+
+
+//获取频道列表的接口
+export const getChannels = () => request({
+	method:'GET',
+	url:`v1_0/channels`,
+	//该接口需要授权才能访问
+	headers:{
+		Authorization:`Bearer ${store.state.user.token}`
+	}
+})

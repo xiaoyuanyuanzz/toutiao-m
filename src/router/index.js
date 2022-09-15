@@ -7,7 +7,7 @@ import My from '@/views/layout/my'
 import Video from '@/views/layout/video'
 
 //路由表
-const routes = [
+/* const routes = [
 	{
 		path:'/',
 		redirect:'/layout'
@@ -35,7 +35,39 @@ const routes = [
 		}],
 		redirect:'/layout/home'
 	}
-	]
+	] */
+	
+	
+	
+	const routes = [
+		{
+			path:'/',
+			component:Layout,
+			children:[{
+				path:'/home',
+				component:Home
+			},
+			{
+				path:'/qa',
+				component:Qa
+			},{
+				path:'/video',
+				component:Video
+			},{
+				path:'/my',
+				component:My
+			}],
+			redirect:'/home'
+		},
+		{
+			path:'/login',
+			component:Login
+		},
+
+		]
+	
+	
+	
 const router = createRouter({
 	history:createWebHistory(),
 	routes

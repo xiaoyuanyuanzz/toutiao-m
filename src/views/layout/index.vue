@@ -4,10 +4,10 @@
 		
 		<!-- tab bar导航栏 -->
 		<van-tabbar v-model="active">
-		  <van-tabbar-item icon="home-o"  replace to="/layout/home">首页</van-tabbar-item>
-		  <van-tabbar-item icon="search"  replace to="/layout/qa">问答</van-tabbar-item>
-		  <van-tabbar-item icon="friends-o"  replace to="/layout/video">视频</van-tabbar-item>
-		  <van-tabbar-item icon="setting-o"  replace to="/layout/my">{{user ? '我的' : '未登录'}}</van-tabbar-item>
+		  <van-tabbar-item icon="home-o"  replace to="/home">首页</van-tabbar-item>
+		  <van-tabbar-item icon="search"  replace to="/qa">问答</van-tabbar-item>
+		  <van-tabbar-item icon="friends-o"  replace to="/video">视频</van-tabbar-item>
+		  <van-tabbar-item icon="setting-o"  replace to="/my">{{user ? '我的' : '未登录'}}</van-tabbar-item>
 		</van-tabbar>
 	</div>
 </template>
