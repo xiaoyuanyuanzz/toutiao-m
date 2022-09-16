@@ -1,7 +1,7 @@
 <template>
 	<div class="home_container">
 		<!-- 导航栏 -->
-		<van-nav-bar  class="page_nav_bar" style="background-color: #3296fa;" >
+		<van-nav-bar  class="page_nav_bar" style="background-color: #3296fa;" fixed >
 			<template #title>
 				<van-button class="search_btn" type='default' size='small' icon='search' round >
 					<span>搜索</span>
@@ -10,13 +10,10 @@
 		 </van-nav-bar>
 		 
 		 <!-- tab栏 -->
-		 <van-tabs v-model:active="active" animated swipeable>
-		   <van-tab title="标签 1">内容 1</van-tab>
-		   <van-tab title="标签 2">内容 2</van-tab>
-		   <van-tab title="标签 3">内容 3</van-tab>
-		   <van-tab title="标签 4">内容 4</van-tab>
-		   <van-tab title="标签 5">内容 5</van-tab>
-		   <van-tab title="标签 6">内容 6</van-tab>
+		 <van-tabs v-model:active="active" animated swipeable sticky offset-top="46px">
+		   <van-tab v-for="obj in channel_list.value" :key="obj.id" :title="obj.name" >
+				<ArticleList :channel="obj" >123</ArticleList>
+		   </van-tab>
 <!-- 		   <template #nav-right>
 			   <div class="place_holder"></div>
 		   </template> -->
@@ -29,14 +26,14 @@
 			   </div>
 		   </template>
 		 </van-tabs>
-		 
-		 <van-button @click="obtain_info">点击获取</van-button>
+
 	</div>
 </template>
 
 <script>
-import { ref,reactive } from 'vue';
+import { ref,reactive,onMounted,provide } from 'vue';
 import {getChannels} from '@/api/user'
+import ArticleList from './components/article_list'
 
 export default {
   setup() {
@@ -45,20 +42,29 @@ export default {
 	// const channels = reactive([])
 	// getChannels().then( res => channels =  res.data.data.channels )
 	// console.log(channels)
-	const obtain_info = async ()=>{
-		return await getChannels()
-	}
+
+	const channel_list = reactive([])
+	onMounted(async ()=>{
+		await getChannels().then( res => channel_list.value =  res.data.data.channels )
+	})
+
+	
     return { value,
 			 active,
-			 obtain_info
+			 channel_list
 		   };
   },
+  components:{
+	  ArticleList
+  }
 };
 </script>
 
 <style scoped lang="less">
 	
 	.home_container{
+		padding-bottom: 50px;
+		padding-top: 46px;
 		/deep/ .van-nav-bar__title{
 			max-width: unset;
 		}
