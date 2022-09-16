@@ -14,7 +14,8 @@
 			  v-model:error="error"
 			  error-text="请求失败，点击重新加载"
 			>
-			  <van-cell v-for="article in list" :key="article.art_id" :title="article.title" />
+			  <!-- <van-cell v-for="article in list" :key="article.art_id" :title="article.title" /> -->
+			  <ArticleItem v-for="article in list" :key="article.art_id" :article="article" ></ArticleItem>
 			</van-list>
 		</van-pull-refresh>
 		
@@ -28,6 +29,7 @@
 import {ref} from 'vue'
 import { getArticles } from '@/api/article'
 import { Toast } from 'vant';
+import ArticleItem from '@/components/article-item'
 
 export default {
 	setup(props){
@@ -119,9 +121,16 @@ export default {
 			type:Object,
 			required:true
 		}
+	},
+	components:{
+		ArticleItem
 	}
 }
 </script>
 
-<style>
+<style scoped lang="less">
+	.article_list_container{
+		height: 79vh;
+		overflow-y: auto;
+	}
 </style>

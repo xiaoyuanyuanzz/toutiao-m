@@ -1,6 +1,6 @@
 <template>
 	<div class="qa_container">
-		qa
+		功能开发中...
 	</div>
 </template>
 
@@ -8,4 +8,8 @@
 </script>
 
 <style>
+	.qa_container{
+		color: red;
+		font-size: 30px;
+	}
 </style>
