@@ -77,7 +77,7 @@ export default {
 	  
 	  const time = ref(30*1000)
 	  
-	  let isCountDownShow = false
+	  let isCountDownShow = ref(false)
 	  
 	  const user = reactive({
 		  mobile:'',
@@ -138,10 +138,7 @@ export default {
 		}catch(err){
 			return console.log('验证失败',err)
 		}
-		
-		proxy.$nextTick(()=>{
-			proxy.isCountDownShow = true
-		})
+		isCountDownShow.value = true
 		try{
 			const res = await sendCode(proxy.user.mobile)
 			document.querySelector('#van-field-2-input').value = ''

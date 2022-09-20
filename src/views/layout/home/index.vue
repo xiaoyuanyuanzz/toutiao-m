@@ -3,7 +3,8 @@
 		<!-- 导航栏 -->
 		<van-nav-bar  class="page_nav_bar" style="background-color: #3296fa;" fixed >
 			<template #title>
-				<van-button class="search_btn" type='default' size='small' icon='search' round >
+				<van-button class="search_btn" type='default' size='small' icon='search' round 
+				 to="/search" >
 					<span>搜索</span>
 				</van-button>
 			</template>

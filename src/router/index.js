@@ -5,6 +5,7 @@ import Home from '@/views/layout/home'
 import Qa from '@/views/layout/qa'
 import My from '@/views/layout/my'
 import Video from '@/views/layout/video'
+import Search from '@/views/search'
 
 //路由表
 /* const routes = [
@@ -63,6 +64,10 @@ import Video from '@/views/layout/video'
 			path:'/login',
 			component:Login
 		},
+		{
+			path:'/search',
+			component:Search
+		}
 
 		]
 	
